@@ -8,17 +8,20 @@ export var jump_force = -700
 
 func _physics_process(delta):
 	motion.y += gravity
+	$AnimatedSprite.play("Idle")
 	if Input.is_action_pressed("ui_right"):
 		motion.x = speed # move by 200 px/s to the right
+		$AnimatedSprite.play("Right")
 		
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = -(speed) # parenthesis is optional. But nice imo.
-		
+		$AnimatedSprite.play("Left")
 	else:
 		motion.x = 0
 		
 	if is_on_floor():
 		if Input.is_action_pressed("ui_up"):
 			motion.y = jump_force
+			$AnimatedSprite.play("Up")
 		
 	motion = move_and_slide(motion, UP)
